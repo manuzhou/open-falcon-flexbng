@@ -35,7 +35,7 @@ func (this *Judge) Send(items []*model.JudgeItem, resp *model.SimpleRpcResponse)
 	now := time.Now().Unix()
 	for _, item := range items {
 		/* 首先判断是否是bras上送的告警信息 */
-		if item.JudgeFlexbngAlarm(){
+		if item.Tags["type"] == "alarm"{
 			log.Println(item)
 			/* 直接写redis数据库 */
 			store.SendFlexbngEvent(item)

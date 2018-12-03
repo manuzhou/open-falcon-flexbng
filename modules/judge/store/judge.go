@@ -20,6 +20,7 @@ import (
 	"github.com/open-falcon/falcon-plus/common/model"
 	"github.com/open-falcon/falcon-plus/modules/judge/g"
 	"log"
+	"github.com/open-falcon/falcon-plus/modules/alarm/model/event"
 )
 
 func Judge(L *SafeLinkedList, firstItem *model.JudgeItem, now int64) {
@@ -100,14 +101,19 @@ func SendFlexbngEvent(item *model.JudgeItem) {
 	strategy.Tpl = &model.Template{}
 	strategy.Tpl.Id = 1
 
-
 	event := &model.Event{
-		Id:         fmt.Sprintf("s_%d_%s", strategy.Id, item.PrimaryKey()),
 		Strategy:   &strategy,
 		Endpoint:   item.Endpoint,
 		LeftValue:  item.Value,
 		EventTime:  item.Timestamp,
 	}
+
+	if item.Tags["flexbng-id"] != nil{
+		event.Id = fmt.Sprintf("s_%d_%s", strategy.Id, item.FlexbngPrimaryKey())
+	}else {
+		event.Id = fmt.Sprintf("s_%d_%s", strategy.Id, item.PrimaryKey())
+	}
+
 
 	if item.Value == 1{
 		event.Status = "PROBLEM"

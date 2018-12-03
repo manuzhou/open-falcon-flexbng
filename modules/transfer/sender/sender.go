@@ -114,7 +114,7 @@ func Push2GraphSendQueue(items []*cmodel.MetaData) {
 	cfg := g.Config().Graph
 
 	for _, item := range items {
-		if item.Tags["type"] != "" && item.Tags["type"] == "alarm"{
+		if item.Tags["type"] == "alarm"{
 			continue
 		}
 
@@ -190,7 +190,7 @@ func convert2GraphItem(d *cmodel.MetaData) (*cmodel.GraphItem, error) {
 // 将原始数据入到tsdb发送缓存队列
 func Push2TsdbSendQueue(items []*cmodel.MetaData) {
 	for _, item := range items {
-		if item.Tags["type"] != "" && item.Tags["type"] == "alarm"{
+		if item.Tags["type"] == "alarm"{
 			continue
 		}
 		tsdbItem := convert2TsdbItem(item)
