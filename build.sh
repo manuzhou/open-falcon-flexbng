@@ -16,3 +16,5 @@ cp -r $WORKDIR/src/github.com/open-falcon/falcon-plus/scripts/mysql/db_schema .
 tar -czvf open-falcon-target.tar.gz open-falcon-v*.tar.gz README.md db_schema/* 
 rm open-falcon-v*.tar.gz
 rm -rf db_schema
+rm -rf src/github.com/open-falcon/falcon-plus/bin
+rm -rf src/github.com/open-falcon/falcon-plus/open-falcon-v*.tar.gz
