@@ -39,17 +39,12 @@ func (this *JudgeItem) String() string {
 		this.Tags)
 }
 
-func (this *JudgeItem) JudgeFlexbngAlarm() bool {
-	for tagKey, tagVal := range this.Tags {
-		if tagKey == "type" && tagVal == "alarm"{
-			return true
-		}
-	}
-	return false
-}
-
 func (this *JudgeItem) PrimaryKey() string {
 	return utils.Md5(utils.PK(this.Endpoint, this.Metric, this.Tags))
+}
+
+func (this *JudgeItem) FlexbngPrimaryKey()string{
+	return utils.Md5(utils.FlexbngPK(this.Endpoint, this.Metric, this.Tags["flexbng-id"]))
 }
 
 type HistoryData struct {

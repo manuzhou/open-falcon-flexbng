@@ -51,6 +51,19 @@ func PK2(endpoint, counter string) string {
 	return ret.String()
 }
 
+func FlexbngPK(endpoint string, metric string, idTag string)string{
+	ret := bufferPool.Get().(*bytes.Buffer)
+	ret.Reset()
+	defer bufferPool.Put(ret)
+
+	ret.WriteString(endpoint)
+	ret.WriteString("/")
+	ret.WriteString(metric)
+	ret.WriteString("/")
+	ret.WriteString(idTag)
+	return ret.String()
+}
+
 func UUID(endpoint, metric string, tags map[string]string, dstype string, step int) string {
 	ret := bufferPool.Get().(*bytes.Buffer)
 	ret.Reset()
