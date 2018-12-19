@@ -1,5 +1,5 @@
 # Compilation
-./start.sh
+./build.sh
 
 # Install
 export FALCON_HOME=/home/work
