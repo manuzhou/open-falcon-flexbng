@@ -18,3 +18,4 @@ rm open-falcon-v*.tar.gz
 rm -rf db_schema
 rm -rf src/github.com/open-falcon/falcon-plus/bin
 rm -rf src/github.com/open-falcon/falcon-plus/open-falcon-v*.tar.gz
+rm -rf src/github.com/open-falcon/falcon-plus/open-falcon
